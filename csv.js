@@ -5,7 +5,7 @@ $(document).ready(function() {
    $("button").click(function() {
      calculate();
    });
- });
+ });// utiliza un objeto de jquery para gestionar el click y la llamada a la funcion del javascript
 
 function calculate() {
   var result;
@@ -16,12 +16,8 @@ function calculate() {
   var commonLength = NaN; // la longitud de la linea ( longitud comun ) 
   var r = [];
   
-  // Template using underscore
-  var row = "<% _.each(items, function(name) { %>"     +
-            "                    <td><%= name %></td>" +
-            "              <% }); %>";                          //Esto se encarga de asignarle a row una funcion.
-
-  if (window.localStorage) localStorage.original  = temp;
+  if (typeof(Storage !== "undefined"))
+    if (window.localStorage) localStorage.original  = temp;
   
   for(var t in lines) {
     var temp = lines[t];
@@ -46,10 +42,10 @@ function calculate() {
         result.push(removeescapedquotes);
       }
       var tr = error? '<tr class="error">' : '<tr>';
-      r.push(tr+_.template(row, {items : result})+"</tr>");
+      r.push(tr+_.template(tm.innerHTML, {items : result})+"</tr>");
     }
     else {
-      alert('ERROR! row '+temp+' does not look as legal CSV');
+      alert("ERROR! \nAlguna de las lineas del string introducido no es valido. Orientese mirando la tabla que resulto de la introduccion de sus datos");
       error = true;
     }
   }
@@ -59,9 +55,11 @@ function calculate() {
   finaltable.innerHTML = r.join('\n');
 }
 
-window.onload = function() {
-  // If the browser supports localStorage and we have some stored data
-  if (window.localStorage && localStorage.original) {
-    document.getElementById("original").value = localStorage.original;
-  }
-}; // introducimos el valor que habiamos puesto antiguamente en el elemento de entrada
+if (typeof(Storage !== "undefined")){
+  window.onload = function() {
+    // If the browser supports localStorage and we have some stored data
+    if (window.localStorage && localStorage.original) {
+      document.getElementById("original").value = localStorage.original;
+    }
+  }; // introducimos el valor que habiamos puesto antiguamente en el elemento de entrada
+};
