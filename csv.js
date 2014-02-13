@@ -53,6 +53,9 @@ function calculate() {
   r.push('</table>');
   //alert(r.join('\n')); // debug
   finaltable.innerHTML = r.join('\n');
+  
+  if(error == true)
+    fallo.innerHTML = "";
 }
 
 if (typeof(Storage !== "undefined")){
