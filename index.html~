@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+
+<html>
+  <head>
+     <meta http-equiv="Content-Type" content="text/html" charset="UTF-8">
+     <title>Analizador CSV</title>
+     <link href="global.css" rel="stylesheet" type="text/css">
+
+     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.5.2/underscore-min.js"></script>
+     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+     <script type="text/javascript" src="csv.js"></script>
+     
+     <script type="text/html"  id="tm" > <% _.each(items, function(name) { %> <td><%= name %></td>  <% }); %> </script>
+     
+  </head>
+  
+  <body>
+  
+    <h1>Analizador Comma Separated Value. Práctica 2</h1>
+    <div class="ayuda">
+      <p>1) Escribe una cadena valida para el CSV. </p>
+      <p>2) Presiona "Crear tabla" para que te la construya.</p>
+      <p> <a href="test/index.html" type="text/html" ></a>
+      <br>
+    </div>
+   
+    <table>
+      <tr>
+        <th>Cadena CSV:</th> 
+        <td><textarea autofocus cols="40" rows="5" id="original"></textarea></td> 
+      </tr>
+    </table>
+    
+    <br>
+    
+    <button type="button">Crear tabla</button><br>
+    <span class="output" id="finaltable"></span>
+    <div id="fallo"></div>
+    
+  </body>
+  
+</html>
